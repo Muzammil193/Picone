@@ -1,0 +1,857 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>For Laraib</title>
+
+  <!-- FONTS -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:'Inter',sans-serif;
+      background:#07070c;
+      color:white;
+      overflow-x:hidden;
+    }
+
+    /* BACKGROUND */
+
+    .bg{
+      position:fixed;
+      inset:0;
+      z-index:-3;
+      overflow:hidden;
+    }
+
+    .glow{
+      position:absolute;
+      border-radius:50%;
+      filter:blur(120px);
+      opacity:0.18;
+      animation:move 12s infinite alternate ease-in-out;
+    }
+
+    .glow1{
+      width:450px;
+      height:450px;
+      background:#ff80b5;
+      top:-100px;
+      left:-100px;
+    }
+
+    .glow2{
+      width:500px;
+      height:500px;
+      background:#9d7bff;
+      bottom:-120px;
+      right:-120px;
+      animation-delay:4s;
+    }
+
+    .noise{
+      position:absolute;
+      inset:0;
+      opacity:0.04;
+      background-image:
+      radial-gradient(circle at 25% 25%, white 1px, transparent 1px);
+      background-size:30px 30px;
+    }
+
+    @keyframes move{
+
+      from{
+        transform:translateY(0px) translateX(0px);
+      }
+
+      to{
+        transform:translateY(80px) translateX(40px);
+      }
+    }
+
+    /* LOGIN */
+
+    .login-screen{
+
+      width:100%;
+      min-height:100vh;
+
+      display:flex;
+      justify-content:center;
+      align-items:center;
+
+      padding:20px;
+    }
+
+    .login-card{
+
+      width:100%;
+      max-width:540px;
+
+      background:rgba(255,255,255,0.04);
+
+      backdrop-filter:blur(25px);
+
+      border:1px solid rgba(255,255,255,0.08);
+
+      border-radius:40px;
+
+      padding:60px;
+
+      text-align:center;
+
+      box-shadow:
+      0 25px 60px rgba(0,0,0,0.45);
+
+      animation:fadeUp 1.2s ease;
+    }
+
+    .login-card h1{
+
+      font-family:'Cormorant Garamond',serif;
+
+      font-size:76px;
+
+      font-weight:600;
+
+      margin-bottom:10px;
+    }
+
+    .login-card p{
+
+      color:#d4d4d8;
+
+      line-height:1.9;
+
+      margin-bottom:35px;
+
+      font-size:18px;
+    }
+
+    .password-box{
+
+      position:relative;
+    }
+
+    input{
+
+      width:100%;
+
+      padding:18px 22px;
+
+      border:none;
+      outline:none;
+
+      border-radius:18px;
+
+      background:rgba(255,255,255,0.05);
+
+      color:white;
+
+      font-size:16px;
+
+      border:1px solid rgba(255,255,255,0.05);
+
+      transition:0.35s;
+    }
+
+    input:focus{
+
+      border-color:rgba(255,128,181,0.4);
+
+      box-shadow:
+      0 0 25px rgba(255,128,181,0.15);
+    }
+
+    button{
+
+      margin-top:22px;
+
+      padding:16px 36px;
+
+      border:none;
+
+      border-radius:18px;
+
+      background:white;
+
+      color:#111827;
+
+      font-weight:600;
+
+      cursor:pointer;
+
+      transition:0.35s;
+    }
+
+    button:hover{
+
+      transform:translateY(-5px);
+
+      box-shadow:
+      0 15px 35px rgba(255,255,255,0.18);
+    }
+
+    .error{
+
+      margin-top:18px;
+
+      color:#fda4af;
+    }
+
+    /* WEBSITE */
+
+    .website{
+      display:none;
+    }
+
+    /* HERO */
+
+    .hero{
+
+      min-height:100vh;
+
+      display:flex;
+      justify-content:center;
+      align-items:center;
+
+      padding:100px 10%;
+
+      position:relative;
+    }
+
+    .hero-content{
+
+      max-width:1100px;
+
+      text-align:center;
+
+      animation:fadeUp 1.5s ease;
+    }
+
+    .hero-tag{
+
+      display:inline-block;
+
+      padding:12px 24px;
+
+      border-radius:50px;
+
+      background:rgba(255,255,255,0.05);
+
+      border:1px solid rgba(255,255,255,0.08);
+
+      margin-bottom:35px;
+
+      color:#e5e7eb;
+
+      letter-spacing:1px;
+
+      font-size:14px;
+    }
+
+    .hero-content h1{
+
+      font-family:'Cormorant Garamond',serif;
+
+      font-size:120px;
+
+      line-height:0.95;
+
+      font-weight:700;
+
+      margin-bottom:35px;
+    }
+
+    .gradient{
+
+      background:linear-gradient(
+      90deg,
+      #ffffff,
+      #ffb6d5,
+      #d7c3ff
+      );
+
+      -webkit-background-clip:text;
+
+      -webkit-text-fill-color:transparent;
+    }
+
+    .hero-content p{
+
+      max-width:850px;
+
+      margin:auto;
+
+      font-size:24px;
+
+      line-height:2;
+
+      color:#d4d4d8;
+    }
+
+    /* CINEMATIC SECTIONS */
+
+    .section{
+
+      min-height:100vh;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      gap:80px;
+
+      padding:100px 10%;
+
+      flex-wrap:wrap;
+    }
+
+    .section.reverse{
+      flex-direction:row-reverse;
+    }
+
+    .image-wrap{
+
+      flex:1;
+      min-width:320px;
+
+      position:relative;
+    }
+
+    .image-wrap::before{
+
+      content:'';
+
+      position:absolute;
+
+      inset:-15px;
+
+      border-radius:40px;
+
+      background:linear-gradient(
+      135deg,
+      rgba(255,182,213,0.15),
+      rgba(215,195,255,0.12)
+      );
+
+      z-index:-1;
+
+      filter:blur(20px);
+    }
+
+    .image-wrap img{
+
+      width:100%;
+
+      border-radius:35px;
+
+      object-fit:cover;
+
+      transition:0.5s;
+
+      box-shadow:
+      0 25px 60px rgba(0,0,0,0.45);
+    }
+
+    .image-wrap:hover img{
+
+      transform:scale(1.02);
+    }
+
+    .text-wrap{
+
+      flex:1;
+      min-width:320px;
+    }
+
+    .section-number{
+
+      font-size:14px;
+
+      letter-spacing:3px;
+
+      color:#f9a8d4;
+
+      margin-bottom:25px;
+    }
+
+    .text-wrap h2{
+
+      font-family:'Cormorant Garamond',serif;
+
+      font-size:72px;
+
+      line-height:1;
+
+      margin-bottom:30px;
+    }
+
+    .text-wrap p{
+
+      font-size:20px;
+
+      line-height:2;
+
+      color:#d4d4d8;
+    }
+
+    /* FINAL */
+
+    .final{
+
+      min-height:100vh;
+
+      display:flex;
+      justify-content:center;
+      align-items:center;
+
+      padding:100px 10%;
+    }
+
+    .final-card{
+
+      max-width:1100px;
+
+      background:rgba(255,255,255,0.04);
+
+      backdrop-filter:blur(25px);
+
+      border:1px solid rgba(255,255,255,0.08);
+
+      border-radius:50px;
+
+      padding:90px;
+
+      text-align:center;
+
+      box-shadow:
+      0 25px 60px rgba(0,0,0,0.35);
+    }
+
+    .final-card h2{
+
+      font-family:'Cormorant Garamond',serif;
+
+      font-size:90px;
+
+      margin-bottom:35px;
+    }
+
+    .final-card p{
+
+      font-size:24px;
+
+      line-height:2.2;
+
+      color:#d4d4d8;
+    }
+
+    /* MUSIC */
+
+    .music-icon{
+
+      position:fixed;
+
+      bottom:30px;
+      right:30px;
+
+      width:72px;
+      height:72px;
+
+      border-radius:50%;
+
+      background:rgba(255,255,255,0.05);
+
+      backdrop-filter:blur(20px);
+
+      border:1px solid rgba(255,255,255,0.08);
+
+      display:flex;
+      justify-content:center;
+      align-items:center;
+
+      font-size:28px;
+
+      animation:pulse 2s infinite;
+    }
+
+    /* ANIMATIONS */
+
+    @keyframes fadeUp{
+
+      from{
+        opacity:0;
+        transform:translateY(70px);
+      }
+
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    @keyframes pulse{
+
+      0%{
+        transform:scale(1);
+      }
+
+      50%{
+        transform:scale(1.08);
+      }
+
+      100%{
+        transform:scale(1);
+      }
+    }
+
+    /* MOBILE */
+
+    @media(max-width:768px){
+
+      .login-card{
+        padding:40px 30px;
+      }
+
+      .login-card h1{
+        font-size:52px;
+      }
+
+      .hero-content h1{
+        font-size:62px;
+      }
+
+      .hero-content p{
+        font-size:18px;
+      }
+
+      .text-wrap h2{
+        font-size:48px;
+      }
+
+      .text-wrap p{
+        font-size:18px;
+      }
+
+      .final-card{
+        padding:50px 30px;
+      }
+
+      .final-card h2{
+        font-size:56px;
+      }
+
+      .final-card p{
+        font-size:18px;
+      }
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- BACKGROUND -->
+
+  <div class="bg">
+
+    <div class="glow glow1"></div>
+    <div class="glow glow2"></div>
+    <div class="noise"></div>
+
+  </div>
+
+  <!-- LOGIN -->
+
+  <div class="login-screen" id="loginScreen">
+
+    <div class="login-card">
+
+      <h1>For Laraib</h1>
+
+      <p>
+        Some feelings deserve their own universe.
+      </p>
+
+      <div class="password-box">
+
+        <input
+        type="password"
+        id="password"
+        placeholder="Enter Password">
+
+      </div>
+
+      <button onclick="checkPassword()">
+        Enter
+      </button>
+
+      <div class="error" id="error"></div>
+
+    </div>
+
+  </div>
+
+  <!-- WEBSITE -->
+
+  <div class="website" id="website">
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+      <div class="hero-content">
+
+        <div class="hero-tag">
+          PRIVATE LITTLE UNIVERSE
+        </div>
+
+        <h1>
+
+          <span class="gradient">
+          If both of us were words,
+          </span>
+
+          <br>
+
+          you'd be my synonym.
+
+        </h1>
+
+        <p>
+          Some people enter life quietly
+          and somehow become everything.
+        </p>
+
+      </div>
+
+    </section>
+
+    <!-- SECTION 1 -->
+
+    <section class="section">
+
+      <div class="image-wrap">
+
+        <img src="pic1.jpg">
+
+      </div>
+
+      <div class="text-wrap">
+
+        <div class="section-number">
+          CHAPTER 01
+        </div>
+
+        <h2>
+          The Softest
+          Parts of My Heart
+        </h2>
+
+        <p>
+          Some memories don't fade.
+          They quietly stay,
+          replaying like favorite songs
+          in the background of life.
+        </p>
+
+      </div>
+
+    </section>
+
+    <!-- SECTION 2 -->
+
+    <section class="section reverse">
+
+      <div class="image-wrap">
+
+        <img src="pic2.jpg">
+
+      </div>
+
+      <div class="text-wrap">
+
+        <div class="section-number">
+          CHAPTER 02
+        </div>
+
+        <h2>
+          You Feel Like
+          Home
+        </h2>
+
+        <p>
+          In a world constantly changing,
+          some people become peace,
+          comfort,
+          and warmth.
+        </p>
+
+      </div>
+
+    </section>
+
+    <!-- SECTION 3 -->
+
+    <section class="section">
+
+      <div class="image-wrap">
+
+        <img src="pic3.jpg">
+
+      </div>
+
+      <div class="text-wrap">
+
+        <div class="section-number">
+          CHAPTER 03
+        </div>
+
+        <h2>
+          Beautiful
+          Little Moments
+        </h2>
+
+        <p>
+          Maybe love is just collecting
+          tiny moments
+          and turning them into forever.
+        </p>
+
+      </div>
+
+    </section>
+
+    <!-- SECTION 4 -->
+
+    <section class="section reverse">
+
+      <div class="image-wrap">
+
+        <img src="pic4.jpg">
+
+      </div>
+
+      <div class="text-wrap">
+
+        <div class="section-number">
+          CHAPTER 04
+        </div>
+
+        <h2>
+          Quietly,
+          You Became Everything
+        </h2>
+
+        <p>
+          Not all beautiful things make noise.
+          Some simply stay,
+          softly and forever.
+        </p>
+
+      </div>
+
+    </section>
+
+    <!-- FINAL -->
+
+    <section class="final">
+
+      <div class="final-card">
+
+        <h2>
+          To Laraib
+        </h2>
+
+        <p>
+          Thank you for every smile,
+          every conversation,
+          every feeling,
+          and every little moment
+          that made life softer.
+
+          <br><br>
+
+          Some people become memories.
+          Some become poetry.
+
+          <br><br>
+
+          You became both.
+
+        </p>
+
+      </div>
+
+    </section>
+
+    <!-- MUSIC -->
+
+    <div class="music-icon">
+      ♫
+    </div>
+
+    <audio id="song" loop>
+
+      <source src="song.mp3" type="audio/mp3">
+
+    </audio>
+
+  </div>
+
+  <!-- SCRIPT -->
+
+  <script>
+
+    function checkPassword(){
+
+      const password =
+      document.getElementById('password').value;
+
+      if(password === '0902'){
+
+        document.getElementById('loginScreen')
+        .style.display = 'none';
+
+        document.getElementById('website')
+        .style.display = 'block';
+
+        // PLAY SONG
+
+        const song =
+        document.getElementById('song');
+
+        song.play();
+      }
+
+      else{
+
+        document.getElementById('error')
+        .innerHTML = 'Wrong Password';
+      }
+    }
+
+  </script>
+
+</body>
+</html>
+```
+
